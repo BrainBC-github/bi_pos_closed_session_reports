@@ -18,18 +18,18 @@ from datetime import datetime
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    res_display_product_wise_detail = fields.Boolean(string="Allow To Display Product Wise Detail")
-    res_display_payment_detail = fields.Boolean(string="Allow To Display Payment Detail")
-    res_category_wise_detail = fields.Boolean(string="Allow To Display Category Wise Detail")
-    res_customer_wise_detail = fields.Boolean(string="Allow To Display Customer Wise Detail")
-    res_pricelist_wise_detail = fields.Boolean(string="Allow To Display Pricelist Wise Detail")
+    res_display_product_wise_detail = fields.Boolean(string="Permitir mostrar detalles del producto")
+    res_display_payment_detail = fields.Boolean(string="Permitir mostrar detalles de pago")
+    res_category_wise_detail = fields.Boolean(string="Permitir mostrar detalles por categoría")
+    res_customer_wise_detail = fields.Boolean(string="Permitir mostrar detalles del cliente")
+    res_pricelist_wise_detail = fields.Boolean(string="Permitir mostrar detalles de la lista de precios")
 
 
 class PosConfig(models.Model):
     _inherit = 'pos.config'
 
-    enable_session_report = fields.Boolean(string="Enable Session  Report")
-    allow_posted_session_report = fields.Boolean(string="Allow Posted Session Report")
+    enable_session_report = fields.Boolean(string="Habilitar informe de sesión")
+    allow_posted_session_report = fields.Boolean(string="Permitir informe de sesión publicado")
     z_report_selection = fields.Selection([('pdf', 'PDF'), ('receipt', 'Receipt'), ('both', 'Both')],
                                           string='Report Type', default='pdf')
 

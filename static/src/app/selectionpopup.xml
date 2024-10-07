@@ -10,12 +10,12 @@
 
             <div class="modal-body">
                 <div class="table-data">
-                    Select Session :
+                    Seleccione Sesión:
                     <t t-if="env.services.pos.sessions_list.length > 0">
                         <select name="Select" id="Select" class="user-selection"
                                 style="border: none; background: white; padding: 5px; padding-right: 45px;
                                             font-size: 15px; font-weight: unset;margin-left: 10px;">
-                            <option value="">Please Choose </option>
+                            <option value="">Por favor elija </option>
                             <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
                                 <t t-if="session.state == 'closed'">
                                     <option t-att-value='session.id'>

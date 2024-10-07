@@ -2,12 +2,16 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="bi_pos_closed_session_reports.BiOrderReceipt" owl="1">
-        <div class="pos-receipt">
-            <t t-if="state.session_data">
-                <div align="center" style="border:1px solid black;padding:4px;font-size:18px">
-                    <strong>Session Report</strong>
-                </div>
 
+        <div class="pos-receipt">
+
+            <t t-if="state.session_data">
+                <!-- header -->
+                <div align="center" style="border:1px solid black;padding:4px;font-size:18px">
+                    <!-- <strong>Session Report</strong> -->
+                    <strong>Reportes de Sesión</strong>
+                </div>
+                <!-- header info -->
                 <div align="center" style="font-size:12px;margin-top:8px;">
                     <div style="font-size:13px;">
                         <t t-if="env.services.pos.company_logo_base64">
@@ -49,11 +53,12 @@
                     </div>
                 </div>
 
+                <!-- Header  info order -->
                 <t t-if="state.current_datetime">
                     <table style="width:100%; margin-top:15px;">
                         <tr>
                             <td>
-                                REPORT ON
+                                INFORME SOBRE
                             </td>
                             <td align="right">
                                 <span t-esc="state.current_datetime"/>
@@ -64,7 +69,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td>
-                            Sales Person
+                            Vendedor
                         </td>
                         <td align="right">
                             <span t-esc="env.services.pos.user.name"/>
@@ -76,7 +81,7 @@
                     <table >
                         <tr>
                             <td class="text-left">
-                                Session
+                                Sesión
                             </td>
                             <td align="right">
                                 <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -88,7 +93,7 @@
                         </tr>
                         <tr>
                             <td class="text-left">
-                                Opened Date
+                                Fecha de apertura
                             </td>
                             <td align="right">
                                 <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -100,7 +105,7 @@
                         </tr>
                         <tr>
                             <td class="text-left">
-                                Closed Date
+                                Fecha cierre
                             </td>
                             <td align="right">
                                 <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -117,7 +122,7 @@
                         </tr>
                         <tr>
                             <td class="text-left">
-                                Session Status
+                                Sesión Estado
                             </td>
                             <td align="right">
                                 <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -133,7 +138,7 @@
                 <table style="width:100%;margin-top:15px;">
                     <tr>
                         <td class="text-left">
-                            Opening Balance
+                            Saldo inicial
                         </td>
                         <td align="right">
                             <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -145,7 +150,7 @@
                     </tr>
                     <tr>
                         <td class="text-left">
-                            Closing Balance
+                            Saldo final
                         </td>
                         <td align="right">
                             <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -156,8 +161,11 @@
                         </td>
                     </tr>
                    <tr>
-                        <td class="text-left">
+                        <!-- <td class="text-left">
                             Difference
+                        </td> -->
+                        <td class="text-left">
+                            Differencia
                         </td>
                         <td align="right">
                             <t t-foreach="env.services.pos.sessions_list" t-as="session" t-key="session.id">
@@ -170,8 +178,11 @@
  
                     <tr>
                         <td class="text-left">
-                           Gross Sales
+                            Ventas brutas
                         </td>
+                        <!-- <td class="text-left">
+                           Gross Sales
+                        </td> -->
                         <td align="right">
                             <t t-if="state.session_data">
                                 <t t-if="state.session_data[0]">
@@ -182,7 +193,7 @@
                     </tr>
                     <tr>
                         <td class="text-left">
-                            Discount Amount
+                            Cantidad de descuento
                         </td>
                         <td align="right">
                             <t t-if="state.session_data">
@@ -210,15 +221,15 @@
                     <t t-if="env.services.pos.config.customer_wise_detail">
                         <t t-if="state.session_data[0].customer_data.length > 0">
                             <div align="center" style="margin-top:10px !important;">
-                                <strong>Customer Wise Detail</strong>
+                                <strong>Detalle del cliente</strong>
                             </div>
                             <table style="width:100%;margin-top:15px;">
                                 <tr>
                                     <td style="width:80%; border-bottom:1px solid black;">
-                                        Customer Name
+                                        Nombre Cliente
                                     </td>
                                     <td align="right" style="border-bottom:1px solid black;">
-                                        Amount
+                                        Monto
                                     </td>
                                 </tr>
                                 <tr t-foreach="state.session_data[0].customer_data" t-as="customer" t-key="customer_index">
@@ -242,7 +253,7 @@
                             <table style="width:100%">
                                 <tr>
                                     <td style="width:50%;" class="text-left">
-                                        Total Amount
+                                        Monto Total
                                     </td>
                                     <td style="width:50%; !important" align="right">
                                         <span t-esc="env.utils.formatCurrency(state.session_data[0].customer_wise_total_amount)"/>
@@ -256,18 +267,18 @@
                     <t t-if="env.services.pos.config.display_product_wise_detail">
                         <t t-if="state.session_data[0].product_detail_data.length > 0">
                             <div align="center" style="margin-top:10px !important;">
-                                <strong>Product Wise Detail</strong>
+                                <strong>Detalle de Productos </strong>
                             </div>
                             <table style="width:100%;margin-top:15px;">
                                 <tr>
                                     <td style="width:80%; border-bottom:1px solid black;">
-                                        Product
+                                        Producto
                                     </td>
                                     <td align="right" style="border-bottom:1px solid black;">
-                                        Quantity
+                                        Cantidad
                                     </td>
                                     <td align="right" style="border-bottom:1px solid black;">
-                                        Price
+                                        Precio
                                     </td>
                                 </tr>
                                 <tr t-foreach="state.session_data[0].product_detail_data" t-as="product_dat" t-key="product_dat_index">
@@ -294,7 +305,7 @@
                             <table style="width:100%">
                                 <tr>
                                     <td style="width:50%;" class="text-left">
-                                        Total Price
+                                        Precio Total
                                     </td>
                                     <td style="width:50%; !important" align="right">
                                         <span t-esc="env.utils.formatCurrency(state.session_data[0].product_wise_total_amount)"/>
@@ -314,17 +325,17 @@
                             <table style="width:100%;margin-top:15px;">
                                 <tr>
                                     <td style="width:80%; border-bottom:1px solid black;">
-                                        Category
+                                        Categoría
                                     </td>
                                     <td align="right" style="border-bottom:1px solid black;">
-                                        Quantities
+                                        Cantidad
                                     </td>
                                 </tr>
                                 <tr t-foreach="state.session_data[0].products_sold" t-as="l" t-key="l_index">
                                     <t t-set="product_total" t-value="product_total + l_value"/>
                                     <td class="text-left">
                                         <t t-if="l == 'undefine'">
-                                            Others
+                                            Otros
                                         </t>
                                         <t t-else="">
                                             <span t-esc="l"/>
@@ -351,30 +362,32 @@
                                         Total Items
                                     </td>
                                     <td style="width:50%; !important" align="right">
-                                        <span t-esc="product_total"/>
+                                        <strong> 
+                                            <span t-esc="product_total"/>
+                                        </strong>
                                     </td>
                                 </tr>
                             </table>
                         </t>
                     </t>
-
+                    <!-- DETALLE DE LISTA DE PRECIOS -->
                     <t t-if="env.services.pos.config.pricelist_wise_detail">
                         <t t-if="state.pricelist">
                             <t t-set="pricelist_total" t-value="0"/>
                             <t t-set="pricelist_qty_total" t-value="0"/>
                             <div align="center" style="margin-top:10px !important;">
-                              <strong> Pricelist details </strong>
+                              <strong>Lista de Precios </strong>
                             </div>
                             <table style="width:100%;margin-top:15px;">
                                 <tr>
                                     <td style="width:50%; border-bottom:1px solid black;">
-                                        Pricelist
+                                        Lista de precios
                                     </td>
                                     <td align="center" style="width:20%; border-bottom:1px solid black;">
-                                        Quantity
+                                        Cantidad
                                     </td>
                                     <td align="right" style="width:30%; border-bottom:1px solid black;">
-                                        Rising
+                                        Creciente
                                     </td>
                                 </tr>
                                 <tr t-foreach="state.pricelist" t-as="pl" t-key="pl_index">
@@ -382,7 +395,7 @@
                                         <t t-set="pricelist_total" t-value="pricelist_total + pl[pl_data][0]['total']"/>
                                         <td class="text-left">
                                             <t t-if="pl_data == 'undefine'">
-                                                    Others
+                                                    Otros
                                             </t>
                                             <t t-else="">
                                                 <span t-esc="pl_data"/>
@@ -426,21 +439,21 @@
                         </t>
                     </t>
 
-
+                    <!-- DETALLES DE LOS METODOS DE PAGO -->
                     <t t-if="env.services.pos.config.display_payment_detail">
                         <t t-if="state.payment_data">
                             <div align="center" style="margin-top:10px !important;">
-                                <strong> Payment details </strong>
+                                <strong>Métodos de pago</strong>
                             </div>
                             <table style="width:100%;margin-top:15px;">
                                 <t t-set="total" t-value="0"/>
                                 <t t-set="qty_payment_method" t-value="0"/>
                                 <tr>
                                     <td style="width:50%; border-bottom:1px solid black;">
-                                        Method
+                                        Método
                                     </td>
                                     <td align="right" style="width:30%; border-bottom:1px solid black;">
-                                        Rising
+                                        Creciente
                                     </td>
                                 </tr>
                                 <tr t-foreach="state.payment_data" t-as="l" t-key="l_index">
