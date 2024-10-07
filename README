@@ -1,0 +1,9 @@
+Módulo para Reporte Z
+
+Version 17.0.0.1 - (30/07/2024)
+	Fix the traceback for the generate receipt.
+	Fix the traceback at the time of print session receipt for the multiple categ set at the product level.
+
+Version 17.0.0.2 - (08/08/2024)
+	Fix issue related to wrong time appear in report.
+
